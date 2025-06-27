@@ -117,3 +117,5 @@ dist
 
 # Typescript
 *.js
+
+images/

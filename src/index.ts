@@ -1,18 +1,28 @@
 import QRCode from "qrcode";
+import { createCanvas, loadImage } from "canvas";
 import PromptSync from "prompt-sync";
 
-const generateQRCode = async (
-  text: string,
-  options: Record<string, any>
-): Promise<string> => {
-  try {
-    const url = QRCode.toDataURL(text, options);
-    return url;
-  } catch (error) {
-    console.error("Error generating QR code:", error);
-    throw error;
+class QRCodeGenerator {
+  private output: string;
+  private options: Record<string, any>;
+  private logoPath?: string;
+
+  constructor(output: string, options: Record<string, any>, logoPath?: string) {
+    this.output = output;
+    this.options = options;
+    this.logoPath = logoPath;
   }
-};
+
+  async generate(): Promise<string> {
+    try {
+      const url = await QRCode.toDataURL(this.output, this.options);
+      return url;
+    } catch (error) {
+      console.error("Error generating QR code:", error);
+      throw error;
+    }
+  }
+}
 
 const main = async () => {
   const prompt = PromptSync();
@@ -31,7 +41,7 @@ const main = async () => {
     },
   };
   try {
-    const qrCodeUrl = await generateQRCode(text, options);
+    const qrCodeUrl = await new QRCodeGenerator(text, options).generate();
     console.log("QR Code URL:", qrCodeUrl);
   } catch (error) {
     console.error("Failed to generate QR code:", error);
