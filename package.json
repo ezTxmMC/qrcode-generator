@@ -1,0 +1,26 @@
+{
+  "name": "qrcode-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "ts-node src/index.ts",
+    "start": "node src/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.12.4",
+  "devDependencies": {
+    "@types/node": "^24.0.4",
+    "@types/prompt-sync": "^4.2.3",
+    "@types/qrcode": "^1.5.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0",
+    "qrcode": "^1.5.4"
+  }
+}
